@@ -26,20 +26,24 @@ class App extends Component {
         <div className="App-header">
           <h2>Welcome to Reactttt</h2>
         </div>
-        <p className="App-intro">
-          To get it, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div>
-          <ul>
-            {
-              this.state.columns.map((title)=>
-                <li key={title}>
-                  <Column title={title}/>
-                </li>
-              )
-            }
-          </ul>
+
+        <div className="container">
+          <div className="container-content">
+            <p className="App-intro">
+              To get it, edit <code>src/App.js</code> and save to reload.
+            </p>
+            <ul>
+              {
+                this.state.columns.map((title)=>
+                  <li key={title}>
+                    <Column title={title}/>
+                  </li>
+                )
+              }
+            </ul>
+          </div>
         </div>
+
       </div>
     );
   }
