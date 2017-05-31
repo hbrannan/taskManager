@@ -32,7 +32,7 @@ class App extends Component {
             <p className="App-intro">
               To get it, edit <code>src/App.js</code> and save to reload.
             </p>
-            <ul>
+            <ul className="column-container">
               {
                 this.state.columns.map((title)=>
                   <li key={title}>

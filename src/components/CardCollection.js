@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Card from './Card';
 
 class CardCollection extends Component {
   constructor (props){
@@ -7,11 +8,11 @@ class CardCollection extends Component {
 
   render (props) {
     return (
-      <ul>
+      <ul className="card-list">
         {
           this.props.children.map((card) =>
             <li key={card}>
-              {card}
+              <Card text={card}/>
             </li>
           )
         }
