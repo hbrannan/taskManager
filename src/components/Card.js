@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import '../App.css';
 
 class Card extends Component {
+  constructor(props){
+    super();
+    this.state = {};
+  }
+
   render() {
     return (
-      <div className="Card">
-        <div className="Card-header">
-          <h2>Welcome to Component</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="card">
+        <p>{this.props.text}</p>
       </div>
     );
   }
