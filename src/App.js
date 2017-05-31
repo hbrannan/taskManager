@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import './App.css';
 import './App.less';
 import Column from './components/Column';
+import { instanceOf } from 'prop-types';
 import { CookiesProvider, withCookies, Cookies } from 'react-cookie';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
 
+  componentWillMount() {
+    const { cookies } = this.props;
+
+    this.state = {
+      name: cookies.get('columns') || ['Ideation', 'TODO', 'Claimed', 'Done']
+    };
+    console.log(this.state.name)
   }
 
   render() {
@@ -35,4 +41,8 @@ class App extends Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  cookies: instanceOf(Cookies).isRequired
+}
+
+export default withCookies(App);
