@@ -1,3 +1,18 @@
+//Import Global Styles
+@import './styles-global/variables.less';
+@import './styles-global/utils.less';
+
+//Import Components
+@import './components/Column.less';
+@import './components/Card.less';
+
+//App Rules
 .App {
   text-align: center;
+}
+
+.col-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

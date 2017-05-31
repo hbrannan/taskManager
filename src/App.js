@@ -13,8 +13,11 @@ class App extends Component {
         <p className="App-intro">
           To get it, edit <code>src/App.js</code> and save to reload.
         </p>
-        <div>
+        <div className="col-grid">
           <Column title="TaskList1"/>
+          <Column title="TaskList2"/>
+          <Column title="TaskList3"/>
+          <Column title="TaskList4"/>
         </div>
       </div>
     );
