@@ -6,14 +6,18 @@ import { instanceOf } from 'prop-types';
 import { CookiesProvider, withCookies, Cookies } from 'react-cookie';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
 
-  componentWillMount() {
     const { cookies } = this.props;
 
+    if (cookies.get('columns') === undefined) {
+      cookies.set('columns', this.props.initialData, { path: '/' })
+    }
+
     this.state = {
-      name: cookies.get('columns') || ['Ideation', 'TODO', 'Claimed', 'Done']
+      columns: cookies.get('columns')
     };
-    console.log(this.state.name)
   }
 
   render() {
@@ -28,7 +32,7 @@ class App extends Component {
         <div>
           <ul>
             {
-              this.props.initialData.map((title)=>
+              this.state.columns.map((title)=>
                 <li key={title}>
                   <Column title={title}/>
                 </li>
