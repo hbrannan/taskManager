@@ -9,7 +9,7 @@ class Card extends Component {
   render() {
     return (
       <div className="card">
-        <p>{this.props.text}</p>
+        <p className="card__paragraph">{this.props.text}</p>
       </div>
     );
   }

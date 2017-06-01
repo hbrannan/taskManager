@@ -10,10 +10,23 @@ class App extends Component {
   componentWillMount() {
     const { cookies } = this.props;
 
+ // TODO : or statement for default
     this.state = {
-      name: cookies.get('columns') || ['Ideation', 'TODO', 'Claimed', 'Done']
+      name: cookies.get('columns')
     };
-    console.log(this.state.name)
+
+    console.log(cookies.get('columns'));
+
+
+    /*
+    [
+     {'Ideation': []}
+    ]
+
+
+
+    */
+
   }
 
   render() {
@@ -30,11 +43,12 @@ class App extends Component {
             </p>
             <ul>
               {
-                this.props.initialData.map((title)=>
-                  <li key={title}>
-                    <Column title={title}/>
+                this.props.initialData.map((obj)=> {
+                  return (<li key={obj.title} className="col">
+                    <Column title={obj.title} tasks={obj.tasks}/>
                   </li>
-                )
+                  );
+                })
               }
             </ul>
           </div>
