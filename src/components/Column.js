@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CardCollection from './CardCollection';
+// import { CookiesProvider, withCookies, Cookies } from 'react-cookie';
+//TODO: handle cookies forcards .. or is that handles as cols?
 
 class Column extends Component {
   constructor(props){
@@ -20,11 +22,11 @@ class Column extends Component {
 
   render () {
     return (
-      <div className={this.props.title}>
+      <div className={`col` + `${this.props.index}`}>
         <div className="card-header">
           <h2>{this.props.title}</h2>
         </div>
-          <CardCollection cards={this.state.cards}/>
+          <CardCollection index={this.props.index} cards={this.state.cards} moveCard={this.props.moveCard}/>
         <div className="add-card-button" onClick={this.onAddCard.bind(this)}> + Add Card</div>
       </div>
     );
