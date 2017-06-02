@@ -37,16 +37,16 @@ class App extends Component {
     let columns = this.state.columns;
     this.state.columns[colIdx].tasks.push(newInfo);
     this.setState({'columns': columns})
+
+    this.updateCookie('columns', columns);
   }
 
   onMoveCard (card, e) {
-    // const { cookies } = this.props;
-
     let columns = this.state.columns;
-    const move = e.target.className;
     const text = card.props.text;
     const colIdx = card.props.colIndex;
     const cardIdx = card.props.cardIndex;
+    const move = e.target.className;
 
     columns[colIdx].tasks.splice(cardIdx, 1);
     columns[colIdx].deletedTaskStack.push(text);
@@ -59,6 +59,12 @@ class App extends Component {
     }
     columns[nextColumn].tasks.push(text);
     this.setState({'columns': columns});
+
+    this.updateCookie('columns', columns);
+  }
+
+  updateCookie (name, updateStringOrObject) {
+    console.log(name, updateStringOrObject)
   }
 
   render() {
