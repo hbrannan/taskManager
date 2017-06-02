@@ -9,7 +9,6 @@ class App extends Component {
     super(props);
 
   /*If cookies are storing a previous state, utilize cookie-state. Else, provide default*/
-    // const { cookies } = this.props;
     // cookies.remove('columns')
 
     // const preExistingCookies = cookies.get('columns');
@@ -64,7 +63,8 @@ class App extends Component {
   }
 
   updateCookie (name, updateStringOrObject) {
-    console.log(name, updateStringOrObject)
+      const { cookies } = this.props;
+      cookies.set(name, updateStringOrObject);
   }
 
   render() {
