@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
-import './App.css';
-import './App.less';
 import Column from './components/Column';
 import { instanceOf } from 'prop-types';
 import { CookiesProvider, withCookies, Cookies } from 'react-cookie';
+import './App.less';
 
 class App extends Component {
   constructor(props) {
     super(props);
-  }
 
-  componentWillMount() {
-    const { cookies } = this.props;
+  /*If cookies are storing a previous state, utilize cookie-state. Else, provide default*/
+    // const { cookies } = this.props;
     // cookies.remove('columns')
 
-    this.state = {
-      columns: cookies.get('columns') || this.props.columns
-    };
+    // const preExistingCookies = cookies.get('columns');
+    const defaultCols = this.props.columns;
 
+    // if (preExistingCookies){
+    //   console.log('cookies already exist', preExistingCookies)
+    //   this.state = {
+    //     'columns': preExistingCookies
+    //   };
+    // } else {
+      this.state = {
+        'columns': defaultCols
+      }
+      // console.log('setting cookies', defaultCols)
+      // cookies.set('columns', this.state.columns);
+    // }
+
+    // console.log('state', this.state.columns)
+  }
+
+  onAddCard (col) {
+    var newInfo = prompt('Please describe task');
+    const colIdx = col.props.index;
+    let columns = this.state.columns;
+    this.state.columns[colIdx].tasks.push(newInfo);
+    this.setState({'columns': columns})
   }
 
   onMoveCard (card, e) {
+    // const { cookies } = this.props;
 
     let columns = this.state.columns;
     const move = e.target.className;
@@ -28,7 +48,7 @@ class App extends Component {
     const colIdx = card.props.colIndex;
     const cardIdx = card.props.cardIndex;
 
-    delete columns[colIdx].tasks[cardIdx];
+    columns[colIdx].tasks.splice(cardIdx, 1);
     columns[colIdx].deletedTaskStack.push(text);
 
     let nextColumn;
@@ -43,21 +63,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
+      <div className="app">
+        <div className="app-header">
+          <h2>{this.props.title}</h2>
         </div>
 
         <div className="container">
           <div className="container-content">
-            <p className="App-intro">
-              To get it, edit <code>src/App.js</code> and save to reload.
-            </p>
+
             <ul>
               {
                 this.props.columns.map((obj, idx, col)=>
                   <li key={idx} className="col">
-                    <Column index={idx} title={obj.title} tasks={obj.tasks} moveCard={this.onMoveCard.bind(this)}/>
+                    <Column
+                      index={idx}
+                      title={obj.title}
+                      tasks={obj.tasks}
+                      moveCard={this.onMoveCard.bind(this)}
+                      addCard={this.onAddCard.bind(this)}
+                    />
                   </li>
                 )
               }
@@ -70,8 +94,5 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  cookies: instanceOf(Cookies).isRequired
-}
 
 export default withCookies(App);

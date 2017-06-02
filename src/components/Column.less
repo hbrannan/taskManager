@@ -1,25 +1,35 @@
+.col {
+  margin: 15px;
+  background: #e9ebee;
+  .drop-shadow();
+  .border-radius(2px);
+}
+
+.col-header h3{
+  margin: 0;
+}
 
 .col:first-child {
-  .card-header {
-    background: red;
+  .col-header {
+    background: @red;
   }
 }
 
 .col:nth-child(2) {
-  .card-header {
-    background: blue;
+  .col-header {
+    background: @blue;
   }
 }
 
 .col:nth-child(3) {
-  .card-header {
-    background: orange;
+  .col-header {
+    background: @orange;
   }
 }
 
 .col:nth-child(4) {
-  .card-header {
-    background: yellow;
+  .col-header {
+    background: @green;
   }
 }
 

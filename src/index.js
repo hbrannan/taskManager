@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import './index.css';
 import { CookiesProvider, withCookies, Cookies } from 'react-cookie';
 
-const initialColumnData = [
+const defaultColumnData = [
   { title: 'Ideation',
     tasks: ['Come up with an Idea','Chart it out'],
     deletedTaskStack: []
@@ -23,9 +22,11 @@ const initialColumnData = [
   }
 ];
 
+const defaultTitle = 'Organize Your Life';
+
 ReactDOM.render(
   <CookiesProvider>
-    <App columns={initialColumnData}/>
+    <App columns={defaultColumnData} title={defaultTitle}/>
   </CookiesProvider>,
 
   document.getElementById('root')
