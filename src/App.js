@@ -14,10 +14,17 @@ import './App.less';
 class App extends Component {
   constructor(props) {
     super(props);
-    const defaultCols = this.props.columns;
-      this.state = {
-        'columns': defaultCols || cookies.get('columns')
-      };
+    const { cookies } = this.props;
+    this._clearCookie
+
+    this.state = {
+        'columns': cookies.get('columns') || this.props.columns
+    };
+  }
+
+  _clearCookie(name){
+    const { cookies } = this.props;
+    cookies.remove(name);
   }
 
   onAddCard (col) {
@@ -25,9 +32,9 @@ class App extends Component {
     const colIdx = col.props.index;
     let columns = this.state.columns;
     this.state.columns[colIdx].tasks.push(newInfo);
-    this.setState({'columns': columns})
 
     this.updateCookie('columns', columns);
+    this.setState({'columns': columns})
   }
 
   onMoveCard (card, e) {
@@ -47,20 +54,21 @@ class App extends Component {
       nextColumn = colIdx + 1;
     }
     columns[nextColumn].tasks.push(text);
-    this.setState({'columns': columns});
 
     this.updateCookie('columns', columns);
-  }
+    this.setState({'columns': columns});
+    }
 
   updateCookie (name, updateStringOrObject) {
       const { cookies } = this.props;
+      cookies.remove('columns');
       cookies.set(name, updateStringOrObject);
   }
 
 /*
 *
  *   Class - App
-*       Model
+*       View
  *
 */
 
@@ -76,7 +84,7 @@ class App extends Component {
 
             <ul>
               {
-                this.props.columns.map((obj, idx, col)=>
+                this.state.columns.map((obj, idx, col)=>
                   <li key={idx} className="col">
                     <Column
                       index={idx}

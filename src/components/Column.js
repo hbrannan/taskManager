@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import CardCollection from './CardCollection';
-import { CookiesProvider, withCookies, Cookies } from 'react-cookie';
-//TODO: handle cookies forcards .. or is that handles as cols?
 
 class Column extends Component {
   constructor(props){
@@ -10,7 +8,6 @@ class Column extends Component {
     this.state = {
       cards: this.props.tasks
     };
-    // console.log(this.state.cards)
   }
 
   render () {
