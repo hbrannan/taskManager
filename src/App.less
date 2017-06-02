@@ -1,3 +1,63 @@
-.App {
+//External Styles
+@import './styles-global/normalize.less';
+
+//Layout Spacing
+@import './styles-global/layout.less';
+
+//Globally defined styles
+@import './styles-global/defaults.less';
+@import './styles-global/variables.less';
+@import './styles-global/utils.less';
+
+
+//Components
+@import './components/Card.less';
+@import './components/Column.less';
+@import './components/CardCollection.less';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-image: url('https://source.unsplash.com/random');
+  background-size: cover;
+}
+
+//App
+.app {
   text-align: center;
+}
+
+.app-header {
+  background-color: rgba(22, 23, 23, 0.7);
+  // height: 50px;
+  padding: 5px;
+  color: white;
+}
+
+.app-intro {
+  font-size: large;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+//Ordered Elements in App
+.col:first-child {
+  .card .before {
+    display: none;
+  }
+}
+
+//Ordered Elements in App
+.col:last-child {
+  .card .after {
+    display: none;
+  }
 }

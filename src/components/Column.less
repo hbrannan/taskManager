@@ -1,0 +1,37 @@
+.col {
+  margin: 15px;
+  background: #e9ebee;
+  .drop-shadow();
+  .border-radius(2px);
+}
+
+.col-header h3{
+  margin: 0;
+}
+
+.col:first-child {
+  .col-header {
+    background: @red;
+  }
+}
+
+.col:nth-child(2) {
+  .col-header {
+    background: @blue;
+  }
+}
+
+.col:nth-child(3) {
+  .col-header {
+    background: @orange;
+  }
+}
+
+.col:nth-child(4) {
+  .col-header {
+    background: @green;
+  }
+}
+
+//todo: use less to say every %4 = 0 is red,
+//of left, every %3 = 0 is x, etc.
