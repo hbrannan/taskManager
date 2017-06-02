@@ -4,30 +4,20 @@ import { instanceOf } from 'prop-types';
 import { CookiesProvider, withCookies, Cookies } from 'react-cookie';
 import './App.less';
 
+/*
+*
+ *   Class - App
+*       props, initial state, and methods
+ *
+*/
+
 class App extends Component {
   constructor(props) {
     super(props);
-
-  /*If cookies are storing a previous state, utilize cookie-state. Else, provide default*/
-    // cookies.remove('columns')
-
-    // const preExistingCookies = cookies.get('columns');
     const defaultCols = this.props.columns;
-
-    // if (preExistingCookies){
-    //   console.log('cookies already exist', preExistingCookies)
-    //   this.state = {
-    //     'columns': preExistingCookies
-    //   };
-    // } else {
       this.state = {
-        'columns': defaultCols
-      }
-      // console.log('setting cookies', defaultCols)
-      // cookies.set('columns', this.state.columns);
-    // }
-
-    // console.log('state', this.state.columns)
+        'columns': defaultCols || cookies.get('columns')
+      };
   }
 
   onAddCard (col) {
@@ -66,6 +56,13 @@ class App extends Component {
       const { cookies } = this.props;
       cookies.set(name, updateStringOrObject);
   }
+
+/*
+*
+ *   Class - App
+*       Model
+ *
+*/
 
   render() {
     return (
