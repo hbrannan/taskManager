@@ -1,28 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
 
-class CardCollection extends Component {
-  constructor(props){
-    super(props);
-  }
+const CardCollection  = ({colIndex, tasks, moveCard}) => (
+  <div className="card-collection">
+    {
+      tasks.map((text, idx)=>
+        <Card
+          key={idx}
+          colIndex={colIndex}
+          cardIndex={idx}
+          text={text}
+          moveCard={moveCard}
+        />
+      )
+    }
+  </div>
+);
 
-  render () {
-    return (
-      <div className="card-collection">
-      {
-        this.props.cards.map((text, idx)=>
-          <Card
-            key={idx}
-            colIndex={this.props.index}
-            cardIndex={idx}
-            text={text}
-            moveCard={this.props.moveCard}
-           />
-        )
-      }
-      </div>
-    );
-  }
+CardCollection.PropTypes = {
+  index: PropTypes.number.isRequired,
+  tasks: PropTypes.array.isRequired,
+  moveCard: PropTypes.func.isRequired
 }
 
 export default CardCollection;

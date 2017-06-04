@@ -1,26 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import CardCollection from './CardCollection';
+import AddCard from '../containers/addCard';
 
-class Column extends Component {
-  constructor(props){
-    super(props);
+const Column = ({index, title, tasks}) => (
+  <li className={`col col` + `${ index}`}>
+    <div className="col-header">
+      <h3>{ title}</h3>
+    </div>
+    <CardCollection colIndex={ index } tasks={ tasks } />
+    <AddCard colIndex={ index }/>
+  </li>
+);
 
-    this.state = {
-      cards: this.props.tasks
-    };
-  }
-
-  render () {
-    return (
-      <div className={`col` + `${this.props.index}`}>
-        <div className="col-header">
-          <h3>{this.props.title}</h3>
-        </div>
-        <CardCollection index={this.props.index} cards={this.state.cards} moveCard={this.props.moveCard}/>
-        <div className="add-card-button" onClick={ () => { this.props.addCard(this) } }> + Add Card</div>
-      </div>
-    );
-  }
+Column.PropTypes = {
+  index: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  tasks: PropTypes.array.isRequired
 }
 
 export default Column;
